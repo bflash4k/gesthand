@@ -1,0 +1,5 @@
+install openpyxl
+	pip install openpyxl
+
+Get CSV from "Licences" -> Nominatives dans la structure
+		http://gesthand-extraction.ff-handball.org/index.php?section=licence&type=nom

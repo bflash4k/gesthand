@@ -1,0 +1,13 @@
+Doc from
+https://developers.google.com/google-apps/calendar/quickstart/python
+
+///Non !! compte de travail: vhb34000@gmail.com
+
+compte de travail: xt1072@gmail.com
+
+https://console.developers.google.com/flows/enableapi?apiid=calendar&pli=1
+
+- Creation projet autour de Google Calendar API
+	-> Activation de l'API
+	-> Credential:
+	https://console.developers.google.com/apis/credentials/consent?createClient&project=advance-mantis-181611
