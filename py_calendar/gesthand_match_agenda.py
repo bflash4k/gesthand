@@ -18,6 +18,10 @@ import getopt
 import csv
 from datetime import datetime, timedelta
 import codecs
+import unicodedata
+
+reload(sys)  
+sys.setdefaultencoding('utf8')
 
 all_matchs = []
 team_list = []
@@ -69,7 +73,25 @@ def StoreMyEvents(service):
     event['end']= {}
 
     #fill the values
-    event['summary'] = lines['club rec']+"/"+lines['club vis']
+    # HACK title:
+    # Competition is like : "+ 16 masculine secteur 5", "championnat - 11 feminin", championnat regional honneur - 18 ans masculin
+    # replace keyword with acronym
+
+    s1 = unicode(lines['competition'], 'utf-8')
+    compet = unicodedata.normalize('NFD', s1).encode('ascii', 'ignore')
+    print ("AAAA {0}".format(compet))
+    compet = compet.replace('masculine','M')
+    compet = compet.replace('masculin','M')
+    compet = compet.replace('feminine','F')
+    compet = compet.replace('feminin','F')
+    compet = compet.replace('championnat','')
+    compet = compet.replace('regional','Reg.')
+    compet = compet.replace('honneur','Hon.')
+
+
+
+    ##event['summary'] = lines['club rec']+"/"+lines['club vis']
+    event['summary'] = compet+": "+lines['club rec']+"/"+lines['club vis']
     event['location'] = lines['nom salle']+","+ lines['adresse salle']+","+ lines['CP']+","+ lines['Ville']
     event['description'] = "J"+lines['J']+" "+lines['competition']
 
